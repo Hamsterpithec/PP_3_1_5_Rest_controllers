@@ -14,9 +14,6 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "last_name")
-    private String lastname;
-
     @Column(name = "age")
     private int age;
 
@@ -26,9 +23,8 @@ public class User {
     public User() {
     }
 
-    public User(String name, String lastname, int age) {
+    public User(String username, String name, int age) {
         this.name = name;
-        this.lastname = lastname;
         this.age = age;
 
     }
@@ -45,16 +41,8 @@ public class User {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setName(String lastname) {
+        this.name = lastname;
     }
 
     public Long getId() {
@@ -78,8 +66,8 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", age='" + age + '\'' +
+                ", age=" + age +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

@@ -2,7 +2,7 @@ package PP_3_1_2_Spring_security.Controllers;
 
 
 import PP_3_1_2_Spring_security.model.User;
-import PP_3_1_2_Spring_security.servise.UserService;
+import PP_3_1_2_Spring_security.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
