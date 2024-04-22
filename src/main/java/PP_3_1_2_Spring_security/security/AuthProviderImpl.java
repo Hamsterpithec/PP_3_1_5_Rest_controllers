@@ -1,7 +1,7 @@
 package PP_3_1_2_Spring_security.security;
 
 
-import PP_3_1_2_Spring_security.service.UsersDetailsService;
+import PP_3_1_2_Spring_security.service.PersonDetailsService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,17 +15,17 @@ import java.util.Collections;
 @Component
 public class AuthProviderImpl implements AuthenticationProvider {
 
-    private final UsersDetailsService usersDetailsService;
+    private final PersonDetailsService personDetailsService;
 
-    public AuthProviderImpl(UsersDetailsService usersDetailsService) {
-        this.usersDetailsService = usersDetailsService;
+    public AuthProviderImpl(PersonDetailsService personDetailsService) {
+        this.personDetailsService = personDetailsService;
     }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
 
-        UserDetails usersDetails = usersDetailsService.loadUserByUsername(username);
+        UserDetails usersDetails = personDetailsService.loadUserByUsername(username);
 
         String password = authentication.getCredentials().toString();
 

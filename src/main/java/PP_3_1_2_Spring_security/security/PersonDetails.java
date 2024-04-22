@@ -7,10 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class UsersDetails implements UserDetails {
+public class PersonDetails implements UserDetails {
     private final User user;
 
-    public UsersDetails(User user) {
+    public PersonDetails(User user) {
         this.user = user;
     }
 
