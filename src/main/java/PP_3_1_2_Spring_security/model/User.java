@@ -20,6 +20,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
+    private String role;
+
     public User() {
     }
 
@@ -27,6 +30,14 @@ public class User {
         this.name = name;
         this.age = age;
 
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getPassword() {
@@ -68,6 +79,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
