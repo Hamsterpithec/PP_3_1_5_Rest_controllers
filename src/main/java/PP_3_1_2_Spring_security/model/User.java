@@ -23,7 +23,7 @@ public class User {
     public User() {
     }
 
-    public User(String username, String name, int age) {
+    public User(String name, String password, int age) {
         this.name = name;
         this.age = age;
 
@@ -41,8 +41,8 @@ public class User {
         return name;
     }
 
-    public void setName(String lastname) {
-        this.name = lastname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getId() {
