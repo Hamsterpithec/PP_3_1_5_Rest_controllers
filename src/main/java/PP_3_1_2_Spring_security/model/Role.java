@@ -2,7 +2,6 @@ package PP_3_1_2_Spring_security.model;
 
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
-
 import java.util.HashSet;
 import java.util.Set;
 
