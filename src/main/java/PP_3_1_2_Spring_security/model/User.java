@@ -1,6 +1,6 @@
 package PP_3_1_2_Spring_security.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 
 @Entity

@@ -1,4 +1,4 @@
-package PP_3_1_2_Spring_security.Controllers;
+package PP_3_1_2_Spring_security.controller;
 
 
 import PP_3_1_2_Spring_security.model.User;
@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @Controller
 @RequestMapping("/users")

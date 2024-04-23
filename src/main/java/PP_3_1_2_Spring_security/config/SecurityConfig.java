@@ -18,6 +18,8 @@ public class SecurityConfig extends WebSecurityConfiguration {
 
 
     public SecurityConfig(PersonDetailsService personDetailsService) {
+
+
         this.personDetailsService = personDetailsService;
     }
 

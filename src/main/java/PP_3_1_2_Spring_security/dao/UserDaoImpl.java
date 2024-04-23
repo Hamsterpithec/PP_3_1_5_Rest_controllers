@@ -2,8 +2,8 @@ package PP_3_1_2_Spring_security.dao;
 
 
 import PP_3_1_2_Spring_security.model.User;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
