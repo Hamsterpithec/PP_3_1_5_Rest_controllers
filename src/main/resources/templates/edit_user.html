@@ -10,15 +10,19 @@
         <label for="name">Last name</label>
     <input type="text" id="name" th:field="*{name}" th:value="${users.name}" required>
     <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
-    </br>
+    <br><br>
     <label for="age">Age</label>
     <input type="text" id="age" th:field="*{age}" th:value="${users.age}" required>
     <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name error</div>
-    </br>
+    <br><br>
     <label for="password">Password</label>
     <input type="text" id="password" th:field="*{password}" th:value="${users.password}" required>
     <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div>
-    </br>
+    <br><br>
+    <label>Select role: <input type="checkbox" name="role" th:each="role : ${role}" th:value="${role.getId()}"
+                               th:text="${role.getName().replace('ROLE_', '') + '  ' + ' | '}" th:field="*{role}"/>
+    </label>
+    <br> <br>
     <button type="submit">update user</button>
 </form>
 </body>

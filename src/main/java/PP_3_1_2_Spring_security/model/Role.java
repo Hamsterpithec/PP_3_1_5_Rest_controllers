@@ -1,47 +1,35 @@
 package PP_3_1_2_Spring_security.model;
 
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.HashSet;
+
 import java.util.Set;
 
 @Component
 @Entity
 @Table(name = "role")
-public class Role {
+public class Role implements GrantedAuthority {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST,
-            CascadeType.MERGE,
-            CascadeType.REFRESH,
-            CascadeType.DETACH})
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
+    @ManyToMany(mappedBy = "role")
+
     private Set<User> users;
 
     public Role() {
     }
 
-    public Role(String name) {
+    public Role(String name, long id) {
         this.name = name;
-    }
-
-    public void addUserToRole(User user) {
-        if (users == null) {
-            users = new HashSet<>();
-        }
-        users.add(user);
+        this.id = id;
     }
 
     public Long getId() {
@@ -60,30 +48,8 @@ public class Role {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
     @Override
-    public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Role r = (Role) o;
-
-        if (name != r.getName()) return false;
-
-        return true;
+    public String getAuthority() {
+        return getName();
     }
 }

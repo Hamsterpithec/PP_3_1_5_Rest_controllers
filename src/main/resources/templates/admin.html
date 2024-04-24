@@ -12,19 +12,19 @@
 <body>
 <h1>Users</h1>
 
-<table border="1">
+<table th:border="1" th:cellpadding="5">
     <tr>
         <th>ID</th>
         <th>Name</th>
         <th>Age</th>
-        <th>Password</th>
+        <th>Role</th>
     </tr>
     <tr var="user" items="${users}">
     <tr th:each="user : ${users}">
         <td th:text="${user.id}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.age}"></td>
-        <td th:text="${user.password}"></td>
+        <td th:each="role:${user.getRoles()}" th:text="${role.getName().replace('ROLE_', '')}"></td>
         <td>
             <form th:action="@{/users/edit}">
                 <button type="submit" th:name="id" th:value="${user.id}">Edit</button>
@@ -37,6 +37,10 @@
         </td>
     </tr>
 </table>
-<a href="/users/new">Create new user</a>
+<br/>
+<form th:action="@{/logout}" method="get">
+    <button type="submit">Logout</button>
+    <a href="/users/new">Create new user</a>
+</form>
 </body>
 </html>

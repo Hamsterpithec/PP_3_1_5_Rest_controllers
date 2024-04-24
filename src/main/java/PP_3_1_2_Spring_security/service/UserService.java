@@ -1,10 +1,6 @@
 package PP_3_1_2_Spring_security.service;
 
-
-
-
 import PP_3_1_2_Spring_security.model.User;
-
 import java.util.List;
 
 public interface UserService {
@@ -13,4 +9,5 @@ public interface UserService {
     void addUser(User user);
     void deleteUser(long id);
     void updateUser(User user);
+    User findByUsername(String username);
 }
