@@ -7,6 +7,7 @@ import PP_3_1_2_Spring_security.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,10 +21,12 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 
     private final UserDao userDao;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserDao userDao, UserRepository userRepository) {
+    public UserServiceImpl(UserDao userDao, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -40,6 +43,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     @Override
     @Transactional
     public void addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.addUser(user);
     }
 
@@ -52,6 +56,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     @Override
     @Transactional
     public void updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.updateUser(user);
     }
     @Override
