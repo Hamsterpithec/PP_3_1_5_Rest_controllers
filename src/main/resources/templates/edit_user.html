@@ -6,7 +6,11 @@
     <title>Edit user</title>
 </head>
 <body>
-<form th:action="@{/users/edit}" th:object="${users}" method="POST">
+<form th:action="@{/admin/edit}" th:object="${users}" method="POST">
+    <label for="id">id</label>
+    <input type="text" id="id" th:field="*{id}" th:value="${users.id}" required>
+    <div style="color: red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name error</div>
+    <br><br>
         <label for="name">Last name</label>
     <input type="text" id="name" th:field="*{name}" th:value="${users.name}" required>
     <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
