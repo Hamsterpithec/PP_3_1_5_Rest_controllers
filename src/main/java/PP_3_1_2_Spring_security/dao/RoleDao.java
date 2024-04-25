@@ -1,0 +1,13 @@
+package PP_3_1_2_Spring_security.dao;
+
+import PP_3_1_2_Spring_security.model.Role;
+
+
+import java.util.List;
+
+
+public interface RoleDao  {
+
+    List<Role> findAll();
+    void save(Role role);
+}

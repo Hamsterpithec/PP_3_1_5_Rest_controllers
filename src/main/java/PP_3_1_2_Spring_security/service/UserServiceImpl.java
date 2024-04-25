@@ -2,7 +2,6 @@ package PP_3_1_2_Spring_security.service;
 
 
 import PP_3_1_2_Spring_security.dao.UserDao;
-import PP_3_1_2_Spring_security.dao.UserRepository;
 import PP_3_1_2_Spring_security.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,12 +19,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService, UserDetailsService{
 
     private final UserDao userDao;
-    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserDao userDao, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserDao userDao,PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
-        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -62,14 +59,14 @@ public class UserServiceImpl implements UserService, UserDetailsService{
     @Override
     @Transactional(readOnly = true)
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userDao.findByUsername(username);
     }
 
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userDao.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(String.format("User '%s' not found", username));
         }

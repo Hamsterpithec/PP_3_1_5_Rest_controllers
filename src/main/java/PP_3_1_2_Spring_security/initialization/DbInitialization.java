@@ -1,4 +1,4 @@
-package PP_3_1_2_Spring_security.DbInit;
+package PP_3_1_2_Spring_security.initialization;
 
 import PP_3_1_2_Spring_security.model.Role;
 import PP_3_1_2_Spring_security.model.User;
@@ -10,11 +10,11 @@ import javax.annotation.PostConstruct;
 import java.util.Set;
 
 @Component
-public class DbInit {
+public class DbInitialization {
     private final RoleService roleService;
     private final UserService userService;
 
-    public DbInit(RoleService roleService, UserService userService) {
+    public DbInitialization(RoleService roleService, UserService userService) {
         this.roleService = roleService;
         this.userService = userService;
     }

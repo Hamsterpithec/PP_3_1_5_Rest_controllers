@@ -39,4 +39,9 @@ public class UserDaoImpl implements UserDao {
     public void updateUser(User user) {
         entityManager.merge(user);
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return entityManager.createQuery("FROM User WHERE name = :username", User.class).getSingleResult();
+    }
 }
