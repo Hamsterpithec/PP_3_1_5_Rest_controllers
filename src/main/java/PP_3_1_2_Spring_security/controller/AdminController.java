@@ -35,26 +35,23 @@ public class AdminController {
     }
 
     @PostMapping
-    public String createUser(@ModelAttribute("users") User user,
-                             BindingResult bindingResult) {
+    public String createUser(@ModelAttribute("users") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "create_user";
         }
-
         userService.addUser(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/edit")
-    public String editUserForm(@PathVariable("id") Long id, Model model) {
+    public String editUserForm(@RequestParam("id") Long id, Model model) {
         model.addAttribute("role",roleService.getRoles());
         model.addAttribute("users", userService.findById(id));
         return "edit_user";
     }
 
     @PostMapping("/edit")
-    public String editUser(@ModelAttribute("users") User user,
-                           BindingResult bindingResult) {
+    public String editUser(@ModelAttribute("users") User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "edit_user";
         }
@@ -63,7 +60,7 @@ public class AdminController {
     }
 
     @PostMapping("/delete")
-    public String deleteUser(@PathVariable("id") Long id) {
+    public String deleteUser(@RequestParam("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }

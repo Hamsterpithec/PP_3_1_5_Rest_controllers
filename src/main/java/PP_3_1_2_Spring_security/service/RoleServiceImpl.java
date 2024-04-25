@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-    private RoleDao roleDao;
+    private final RoleDao roleDao;
 
     public RoleServiceImpl(RoleDao roleDao) {
         this.roleDao = roleDao;
@@ -24,6 +24,7 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
+    @Transactional
     public void addRole(Role role) {
         roleDao.save(role);
     }

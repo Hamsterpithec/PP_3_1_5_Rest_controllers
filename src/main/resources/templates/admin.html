@@ -26,12 +26,12 @@
         <td th:text="${user.age}"></td>
         <td th:each="role:${user.getRoles()}" th:text="${role.getName().replace('ROLE_', '')}"></td>
         <td>
-            <form th:action="@{/users/edit}">
+            <form th:action="@{/admin/edit}">
                 <button type="submit" th:name="id" th:value="${user.id}">Edit</button>
             </form>
         </td>
         <td>
-            <form method="post" th:action="@{/users/delete}">
+            <form method="post" th:action="@{/admin/delete}">
                 <button type="submit" th:name="id" th:value="${user.id}">Delete</button>
             </form>
         </td>

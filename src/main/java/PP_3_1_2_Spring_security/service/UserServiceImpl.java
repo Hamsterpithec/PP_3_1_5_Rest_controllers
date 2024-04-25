@@ -13,15 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 
-
 @Service
 @Transactional(readOnly = true)
-public class UserServiceImpl implements UserService, UserDetailsService{
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserDao userDao,PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
     }
@@ -56,6 +55,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.updateUser(user);
     }
+
     @Override
     @Transactional(readOnly = true)
     public User findByUsername(String username) {

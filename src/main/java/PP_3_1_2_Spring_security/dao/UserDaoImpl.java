@@ -4,9 +4,13 @@ package PP_3_1_2_Spring_security.dao;
 import PP_3_1_2_Spring_security.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Queue;
 
 
 @Repository
@@ -42,6 +46,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByUsername(String username) {
-        return entityManager.createQuery("FROM User WHERE name = :username", User.class).getSingleResult();
+        TypedQuery<User> query = entityManager.createQuery("from User where name = :username", User.class);
+        query.setParameter("username", username);
+
+        return query.getSingleResult();
     }
 }

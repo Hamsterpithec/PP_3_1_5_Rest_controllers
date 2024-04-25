@@ -5,14 +5,17 @@ import PP_3_1_2_Spring_security.model.User;
 import PP_3_1_2_Spring_security.service.RoleService;
 import PP_3_1_2_Spring_security.service.UserService;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.Set;
 
+@Transactional
 @Component
 public class DbInitialization {
     private final RoleService roleService;
     private final UserService userService;
+
 
     public DbInitialization(RoleService roleService, UserService userService) {
         this.roleService = roleService;
