@@ -17,6 +17,7 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping
     public String index(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());

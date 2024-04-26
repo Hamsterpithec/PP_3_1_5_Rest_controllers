@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void deleteUser(long id) {
-       entityManager.remove(findById(id));
+        entityManager.remove(findById(id));
     }
 
     @Override

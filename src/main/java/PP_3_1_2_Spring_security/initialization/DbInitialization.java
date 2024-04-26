@@ -30,8 +30,8 @@ public class DbInitialization {
         roleService.addRole(user);
         roleService.addRole(admin);
 
-        userService.addUser(new User("user","user",25, Set.of(user)));
-        userService.addUser(new User("admin","admin",32, Set.of(admin)));
+        userService.addUser(new User("user", "user", 25, Set.of(user)));
+        userService.addUser(new User("admin", "admin", 32, Set.of(admin)));
 
     }
 

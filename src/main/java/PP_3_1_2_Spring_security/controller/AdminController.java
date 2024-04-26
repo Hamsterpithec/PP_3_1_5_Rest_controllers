@@ -17,7 +17,7 @@ public class AdminController {
     private final RoleService roleService;
 
 
-    public AdminController(UserService userService,RoleService roleService) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -45,7 +45,7 @@ public class AdminController {
 
     @GetMapping("/edit")
     public String editUserForm(@RequestParam("id") Long id, Model model) {
-        model.addAttribute("role",roleService.getRoles());
+        model.addAttribute("role", roleService.getRoles());
         model.addAttribute("users", userService.findById(id));
         return "edit_user";
     }
@@ -59,7 +59,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping ("/delete")
+    @PostMapping("/delete")
     public String deleteUser(@RequestParam("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";

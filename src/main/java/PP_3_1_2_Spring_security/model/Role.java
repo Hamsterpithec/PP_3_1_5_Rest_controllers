@@ -4,7 +4,6 @@ package PP_3_1_2_Spring_security.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-
 import java.util.Set;
 
 @Entity
@@ -29,6 +28,7 @@ public class Role implements GrantedAuthority {
         this.name = name;
         this.id = id;
     }
+
     public Role(Long id) {
         this.id = id;
     }
