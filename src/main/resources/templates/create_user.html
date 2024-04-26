@@ -19,10 +19,6 @@
     <input type="text" id="password" th:field="*{password}" th:value="${users.password}" required>
     <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div>
     <br> <br>
-    <label>Select role: <input type="checkbox" name="roles" th:each="role : ${roles}" th:value="${role.getId()}"
-                               th:text="${role.getName().replace('ROLE_', '') + '  ' + ' | '}" th:field="*{roles}"/>
-    </label>
-    <br> <br>
     <button type="submit">create user</button>
 </form>
 </body>

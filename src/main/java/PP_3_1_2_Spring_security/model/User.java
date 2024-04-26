@@ -26,7 +26,7 @@ public class User implements UserDetails {
     private String password;
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -118,4 +118,14 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }

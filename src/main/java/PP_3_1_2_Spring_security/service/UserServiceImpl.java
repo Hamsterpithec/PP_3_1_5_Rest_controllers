@@ -2,6 +2,7 @@ package PP_3_1_2_Spring_security.service;
 
 
 import PP_3_1_2_Spring_security.dao.UserDao;
+import PP_3_1_2_Spring_security.model.Role;
 import PP_3_1_2_Spring_security.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,7 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Service
@@ -39,8 +45,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional
     public void addUser(User user) {
+        if (user.getRoles() == null) {
+
+            Set<Role> roles1 = getAllUsers().stream().findFirst().get().getRoles();
+            Optional<Role> any = roles1.stream().findFirst();
+            if (any.isPresent()) {
+
+                Role role = any.get();
+
+
+                Set<Role> roles = new HashSet<>();
+                roles.add(role);
+
+                user.setRoles(roles);
+            }
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.addUser(user);
+
     }
 
     @Override
@@ -52,6 +74,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional
     public void updateUser(User user) {
+        if (user.getRoles() == null) {
+
+            Set<Role> roles1 = getAllUsers().stream().findFirst().get().getRoles();
+            Optional<Role> any = roles1.stream().findFirst();
+            if (any.isPresent()) {
+
+                Role role = any.get();
+
+
+                Set<Role> roles = new HashSet<>();
+                roles.add(role);
+
+                user.setRoles(roles);
+            }
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.updateUser(user);
     }
