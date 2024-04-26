@@ -2,15 +2,12 @@ package PP_3_1_2_Spring_security.dao;
 
 
 import PP_3_1_2_Spring_security.model.User;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Queue;
 
 
 @Repository
