@@ -4,11 +4,12 @@ import PP_3_1_2_Spring_security.model.Role;
 
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface RoleDao  {
 
     List<Role> findAll();
-    Role findById(Long id);
+    Set<Role> findRoles(List<Long> roles);
     void save(Role role);
 }

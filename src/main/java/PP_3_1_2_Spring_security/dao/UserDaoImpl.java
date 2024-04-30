@@ -1,6 +1,7 @@
 package PP_3_1_2_Spring_security.dao;
 
 
+import PP_3_1_2_Spring_security.model.Role;
 import PP_3_1_2_Spring_security.model.User;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.Set;
 
 
 @Repository
@@ -27,7 +29,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void addUser(User user) {
+    public void addUser(User user, Set<Role> roles) {
+        user.setRoles(roles);
         entityManager.persist(user);
     }
 
@@ -37,7 +40,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(User user, Set<Role> roles) {
+        user.setRoles(roles);
         entityManager.merge(user);
     }
 

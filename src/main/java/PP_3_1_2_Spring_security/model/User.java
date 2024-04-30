@@ -29,20 +29,27 @@ public class User implements UserDetails {
     @ManyToMany
     @JoinTable(
             name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
+            joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id")
 
     )
     private Set<Role> roles;
 
 
-    public User(String name, String password, int age, Set<Role> roles) {
+    public User(String name, String password, int age) {
         this.name = name;
         this.age = age;
         this.password = password;
-        this.roles = roles;
+
 
     }
+//    public User(String name, String password, int age, Set<Role> roles) {
+//        this.name = name;
+//        this.age = age;
+//        this.password = password;
+//        this.roles = roles;
+//
+//    }
 
     public User() {
 

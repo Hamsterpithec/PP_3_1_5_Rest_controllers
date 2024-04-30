@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -24,8 +25,8 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(readOnly = true)
-    public Role findById(Long id) {
-        return roleDao.findById(id);
+    public Set<Role> findRoles(List<Long> roles) {
+        return roleDao.findRoles(roles);
     }
 
     @Override

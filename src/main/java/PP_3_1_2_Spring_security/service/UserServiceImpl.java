@@ -11,9 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 
@@ -42,24 +40,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public void addUser(User user) {
-        if (user.getRoles() == null) {
-
-            Set<Role> roles1 = getAllUsers().stream().findFirst().get().getRoles();
-            Optional<Role> any = roles1.stream().findFirst();
-            if (any.isPresent()) {
-
-                Role role = any.get();
-
-
-                Set<Role> roles = new HashSet<>();
-                roles.add(role);
-
-                user.setRoles(roles);
-            }
-        }
+    public void addUser(User user,Set<Role> roles) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.addUser(user);
+        userDao.addUser(user,roles);
 
     }
 
@@ -71,24 +54,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public void updateUser(User user) {
-        if (user.getRoles() == null) {
-
-            Set<Role> roles1 = getAllUsers().stream().findFirst().get().getRoles();
-            Optional<Role> any = roles1.stream().findFirst();
-            if (any.isPresent()) {
-
-                Role role = any.get();
-
-
-                Set<Role> roles = new HashSet<>();
-                roles.add(role);
-
-                user.setRoles(roles);
-            }
-        }
+    public void updateUser(User user,Set<Role> roles) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.updateUser(user);
+        userDao.updateUser(user,roles);
     }
 
     @Override

@@ -6,8 +6,9 @@ import PP_3_1_2_Spring_security.service.RoleService;
 import PP_3_1_2_Spring_security.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,32 +31,28 @@ public class AdminController {
     }
 
     @GetMapping("/new")
-    public String createUserForm(@ModelAttribute("users") User user) {
+    public String createUserForm(Model model) {
+        model.addAttribute("user", new User());
+        model.addAttribute("ListRoles", roleService.getRoles());
         return "create_user";
     }
 
     @PostMapping
-    public String createUser(@ModelAttribute("users") User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "create_user";
-        }
-        userService.addUser(user);
+    public String createUser(User user, @RequestParam("ListRoles") ArrayList<Long> roles) {
+        userService.addUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
     }
 
-    @GetMapping("/edit")
-    public String editUserForm(@RequestParam("id") Long id, Model model) {
+    @GetMapping("/edit/{id}")
+    public String editUserForm(@PathVariable("id") Long id, Model model) {
         model.addAttribute("role", roleService.getRoles());
         model.addAttribute("users", userService.findById(id));
         return "edit_user";
     }
 
-    @PostMapping("/edit")
-    public String editUser(@ModelAttribute("users") User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "edit_user";
-        }
-        userService.updateUser(user);
+    @PatchMapping("/{id}")
+    public String editUser(User user,@RequestParam("ListRoles") ArrayList<Long> roles ) {
+        userService.updateUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
     }
 

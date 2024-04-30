@@ -23,14 +23,20 @@ public class DbInitialization {
 
     @PostConstruct
     public void init() {
-        Role user = new Role("ROLE_USER");
-        Role admin = new Role("ROLE_ADMIN");
+        Role roleUser = new Role("ROLE_USER");
+        Role roleAdmin = new Role("ROLE_ADMIN");
 
-        roleService.addRole(user);
-        roleService.addRole(admin);
+        roleService.addRole(roleUser);
+        roleService.addRole(roleAdmin);
 
-        userService.addUser(new User("user", "user", 25, Set.of(user)));
-        userService.addUser(new User("admin", "admin", 32, Set.of(admin)));
+        User userAdmin = new User("admin", "admin", 32);
+        User userUser  = new User("user", "user", 25);
+
+        userService.addUser(userUser,Set.of(roleUser));
+        userService.addUser(userAdmin,Set.of(roleAdmin));
+
+//        userService.addUser(new User("user","user",25, Set.of(user))));
+//        userService.addUser(new User("admin", "admin", 32, Set.of(admin)));
 
     }
 

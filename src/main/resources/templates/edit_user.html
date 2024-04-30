@@ -23,6 +23,11 @@
     <input type="text" id="password" th:field="*{password}" th:value="${users.password}" required>
     <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div>
     <br><br>
+    <label class="form-label" for="id1">Укажите Роль</label>
+    <select name="listRoles"  class="form-select" aria-label="Default select example" id="id1">
+        <option value="1">USER</option>
+        <option value="2">ADMIN</option>
+    </select>
     <button type="submit">update user</button>
 </form>
 </body>
