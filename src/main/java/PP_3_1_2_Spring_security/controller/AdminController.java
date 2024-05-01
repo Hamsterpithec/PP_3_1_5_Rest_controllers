@@ -33,24 +33,24 @@ public class AdminController {
     @GetMapping("/new")
     public String createUserForm(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("ListRoles", roleService.getRoles());
+        model.addAttribute("ListRoles", roleService.getAllRoles());
         return "create_user";
     }
 
-    @PostMapping
+    @PostMapping()
     public String createUser(User user, @RequestParam("ListRoles") ArrayList<Long> roles) {
         userService.addUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
     }
 
-    @GetMapping("/edit/{id}")
-    public String editUserForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("role", roleService.getRoles());
-        model.addAttribute("users", userService.findById(id));
+    @GetMapping("/edit")
+    public String editUserForm(@RequestParam("id") Long id, Model model) {
+        model.addAttribute("user", userService.findById(id));
+        model.addAttribute("ListRole", roleService.getAllRoles());
         return "edit_user";
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping()
     public String editUser(User user,@RequestParam("ListRoles") ArrayList<Long> roles ) {
         userService.updateUser(user,roleService.findRoles(roles));
         return "redirect:/admin";

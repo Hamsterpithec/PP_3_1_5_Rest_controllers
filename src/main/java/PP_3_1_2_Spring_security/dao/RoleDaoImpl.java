@@ -18,7 +18,7 @@ public class RoleDaoImpl implements RoleDao {
 
 
     @Override
-    public List<Role> findAll() {
+    public List<Role> getAllRoles() {
         return entityManager.createQuery("from Role", Role.class).getResultList();
     }
 
@@ -30,9 +30,5 @@ public class RoleDaoImpl implements RoleDao {
     }
 
 
-    @Override
-    public void save(Role role) {
-        entityManager.persist(role);
 
-    }
 }

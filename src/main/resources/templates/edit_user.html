@@ -6,21 +6,21 @@
     <title>Edit user</title>
 </head>
 <body>
-<form th:action="@{/admin/edit}" th:object="${users}" method="POST">
+<form th:action="@{/admin/edit}" th:object="${user}" method="POST">
     <label for="id">id</label>
-    <input type="text" id="id" th:field="*{id}" th:value="${users.id}" required>
+    <input type="text" id="id" th:field="*{id}" th:value="${user.id}" required>
     <div style="color: red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name error</div>
     <br><br>
-    <label for="name">Last name</label>
-    <input type="text" id="name" th:field="*{name}" th:value="${users.name}" required>
+    <label for="name">Name</label>
+    <input type="text" id="name" th:field="*{name}" th:value="${user.name}" required>
     <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
     <br><br>
     <label for="age">Age</label>
-    <input type="text" id="age" th:field="*{age}" th:value="${users.age}" required>
+    <input type="text" id="age" th:field="*{age}" th:value="${user.age}" required>
     <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name error</div>
     <br><br>
     <label for="password">Password</label>
-    <input type="text" id="password" th:field="*{password}" th:value="${users.password}" required>
+    <input type="text" id="password" th:field="*{password}" th:value="${user.password}" required>
     <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div>
     <br><br>
     <label class="form-label" for="id1">Укажите Роль</label>

@@ -6,7 +6,7 @@
     <title>Create user</title>
 </head>
 <body>
-<form th:action="@{/admin/create_user}" th:object="${user}" method="POST">
+<form th:action="@{/admin/new}" th:object="${user}" method="POST">
         <label for="name">Name</label>
     <input type="text" id="name" th:field="*{name}" required>
     <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
