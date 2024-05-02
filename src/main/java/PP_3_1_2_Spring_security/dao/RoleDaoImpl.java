@@ -29,6 +29,10 @@ public class RoleDaoImpl implements RoleDao {
         return new HashSet<>(q.getResultList());
     }
 
+    @Override
+    public void addRole(Role role) {
+        entityManager.persist(role);
+    }
 
 
 }

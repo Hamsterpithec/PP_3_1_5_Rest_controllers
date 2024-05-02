@@ -29,4 +29,10 @@ public class RoleServiceImpl implements RoleService {
         return roleDao.findRoles(roles);
     }
 
+    @Override
+    @Transactional
+    public void addRole(Role role) {
+        roleDao.addRole(role);
+    }
+
 }

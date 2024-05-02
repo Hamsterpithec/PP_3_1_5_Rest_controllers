@@ -30,15 +30,15 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/create")
     public String createUserForm(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("ListRoles", roleService.getAllRoles());
-        return "create_user";
+        model.addAttribute("userRoles", roleService.getAllRoles());
+        return "create";
     }
 
-    @PostMapping()
-    public String createUser(User user, @RequestParam("ListRoles") ArrayList<Long> roles) {
+    @PostMapping("/create")
+    public String createUser(User user, @RequestParam("roles") ArrayList<Long> roles) {
         userService.addUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
     }
@@ -46,12 +46,12 @@ public class AdminController {
     @GetMapping("/edit")
     public String editUserForm(@RequestParam("id") Long id, Model model) {
         model.addAttribute("user", userService.findById(id));
-        model.addAttribute("ListRole", roleService.getAllRoles());
-        return "edit_user";
+        model.addAttribute("userRoles", roleService.getAllRoles());
+        return "edit";
     }
 
-    @PatchMapping()
-    public String editUser(User user,@RequestParam("ListRoles") ArrayList<Long> roles ) {
+    @PostMapping("/edit")
+    public String editUser(User user,@RequestParam("roles") ArrayList<Long> roles ) {
         userService.updateUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
     }
