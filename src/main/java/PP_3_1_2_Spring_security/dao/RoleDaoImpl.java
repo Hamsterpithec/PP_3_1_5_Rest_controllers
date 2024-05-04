@@ -24,7 +24,7 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public Set<Role> findRoles(List<Long> roles) {
-        TypedQuery<Role> q = entityManager.createQuery("select distinct r from Role r join fetch r.users u where r.id in :role", Role.class);
+        TypedQuery<Role> q = entityManager.createQuery("select distinct r from Role r where r.id in :role", Role.class);
         q.setParameter("role", roles);
         return new HashSet<>(q.getResultList());
     }
@@ -33,6 +33,5 @@ public class RoleDaoImpl implements RoleDao {
     public void addRole(Role role) {
         entityManager.persist(role);
     }
-
 
 }
