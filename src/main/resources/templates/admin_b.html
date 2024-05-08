@@ -17,7 +17,7 @@
     <div class="mb-2 bg-dark text-white">
         <div class="row">
             <div class="col-sm-8">
-                <a th:text="${user.getName()}" class="fw-bolder text-white bg-dark font-weight-bold"></a>
+                <a th:text="${user.getEmail()}" class="fw-bolder text-white bg-dark font-weight-bold"></a>
                 <span class="text-start">with roles:
                     <a th:each="role : ${user.getRoles()}" th:text="${role.getName().replace('ROLE_',  '')}"></a>
                 </span>
@@ -94,8 +94,8 @@
                         <div class="form-group">
                             <label class="font-weight-bolder">Роль</label>
                             <select class="form-control form-control-sm" name="roles" multiple required>
-                                <div th:each="role : ${allRoles}">
-                                    <option th:value="${role.id}" th:text="${role}"/>
+                                <div th:each="r : ${userRoles}">
+                                    <option th:value="${r.id}" th:text="${r.id+' '+r.name}"/>
                                 </div>
                             </select>
                         </div>
@@ -196,8 +196,8 @@
                                                     <select class="form-control form-control-sm" name="roles"
                                                             multiple
                                                             required>
-                                                        <div th:each="role : ${allRoles}">
-                                                            <option th:value="${role.id}" th:text="${role}"
+                                                        <div th:each="role : ${userRoles}">
+                                                            <option th:value="${r.id}" th:text="${r.id+' '+r.name}"
                                                                     th:selected="${user.roles.contains(role)}"></option>
                                                         </div>
                                                     </select>
@@ -258,8 +258,8 @@
                                                     <select class="form-control form-control-sm" name="roles"
                                                             multiple
                                                     >
-                                                        <div th:each="role : ${allRoles}">
-                                                            <option th:value="${role.id}" th:text="${role}"
+                                                        <div th:each="role : ${userRoles}">
+                                                            <option th:value="${r.id}" th:text="${r.id+' '+r.name}"
                                                                     disabled></option>
                                                         </div>
                                                     </select>
