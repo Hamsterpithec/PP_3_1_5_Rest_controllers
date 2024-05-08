@@ -19,11 +19,17 @@ public class User implements UserDetails {
     @Column(name = "name")
     private String name;
 
+    @Column(name="lastName")
+    private String lastName;
+
     @Column(name = "age")
     private int age;
 
     @Column(name = "password")
     private String password;
+
+    @Column(name="email")
+    private String email;
 
 
     @ManyToMany
@@ -36,11 +42,12 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
 
-    public User(String name, String password, int age) {
+    public User(String name,String lastName, String password, int age,String email) {
         this.name = name;
+        this.lastName = lastName;
         this.age = age;
         this.password = password;
-
+        this.email = email;
 
     }
 
@@ -119,13 +126,31 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 ", roles=" + roles +
                 '}';
     }
