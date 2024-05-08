@@ -17,7 +17,7 @@
         <div class="col-sm-8">
             <a th:text="${user.getEmail()}" class="fw-bolder text-white bg-dark font-weight-bold"></a>
             <span class="text-start">with roles:
-                  <a th:each="role : ${user.getRoles()}" th:text="${role.getName().replace('ROLE_', '' )}"></a>
+                  <a th:each="role : ${user.getRoles()}" th:text="${role.getName().replace('ROLE_', '' )} "></a>
               </span>
         </div>
         <div class="col-sm-4">
