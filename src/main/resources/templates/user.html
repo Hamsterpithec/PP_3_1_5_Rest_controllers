@@ -70,7 +70,7 @@
                             <td class="text-center" th:text="${user.lastName}"></td>
                             <td class="text-center" th:text="${user.age}"></td>
                             <td class="text-center" th:text="${user.email}"></td>
-                            <td class="text-center" th:each="role: ${user.getRoles()}" th:text="${role.getName().replace('ROLE_', '')}"></td>
+                            <td class="text-center" th:text="${user.getStringRoles()}"></td>
                             </td>
                         </tr>
                         </tbody>

@@ -141,6 +141,19 @@ public class User implements UserDetails {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    public String getStringRoles() {
+        StringBuilder roleString = new StringBuilder();
+        for (Role r: roles) {
+            String temp;
+            if (r.getName().equals("ROLE_ADMIN")) {
+                temp = "ADMIN";
+            } else {
+                temp = "USER";
+            }
+            roleString.append(temp).append(" ");
+        }
+        return roleString.toString();
+    }
 
     @Override
     public String toString() {

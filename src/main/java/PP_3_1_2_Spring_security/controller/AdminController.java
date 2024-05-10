@@ -55,7 +55,7 @@ public class AdminController {
 //        return "edit";
 //    }
 
-    @PostMapping("/edit")
+    @PostMapping("/update")
     public String editUser(User user,@RequestParam("roles") ArrayList<Long> roles ) {
         userService.updateUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
