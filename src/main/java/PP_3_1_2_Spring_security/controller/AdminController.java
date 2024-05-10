@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 @Controller
@@ -24,18 +25,22 @@ public class AdminController {
     }
 
 
-    @GetMapping()
-    public String allUsers(Model model) {
+    @GetMapping
+    public String allUsers(Model model, Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("user", user);
         model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("userRoles", roleService.getAllRoles());
+        model.addAttribute("newUser", new User());
         return "admin";
     }
 
-    @GetMapping("/create")
-    public String createUserForm(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("userRoles", roleService.getAllRoles());
-        return "create";
-    }
+//    @GetMapping("/create")
+//    public String createUserForm(Model model) {
+//        model.addAttribute("user", new User());
+//        model.addAttribute("userRoles", roleService.getAllRoles());
+//        return "create";
+//    }
 
     @PostMapping("/create")
     public String createUser(User user, @RequestParam("roles") ArrayList<Long> roles) {
@@ -43,12 +48,12 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/edit")
-    public String editUserForm(@RequestParam("id") Long id, Model model) {
-        model.addAttribute("user", userService.findById(id));
-        model.addAttribute("userRoles", roleService.getAllRoles());
-        return "edit";
-    }
+//    @GetMapping("/edit")
+//    public String editUserForm(@RequestParam("id") Long id, Model model) {
+//        model.addAttribute("user", userService.findById(id));
+//        model.addAttribute("userRoles", roleService.getAllRoles());
+//        return "edit";
+//    }
 
     @PostMapping("/edit")
     public String editUser(User user,@RequestParam("roles") ArrayList<Long> roles ) {
@@ -56,8 +61,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/delete")
-    public String deleteUser(@RequestParam("id") Long id) {
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
