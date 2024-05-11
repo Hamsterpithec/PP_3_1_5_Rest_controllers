@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -43,7 +44,7 @@ public class AdminController {
 //    }
 
     @PostMapping("/create")
-    public String createUser(User user, List<Long> roles) {
+    public String createUser(User user, ArrayList<Long> roles) {
         userService.addUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
     }
@@ -56,7 +57,7 @@ public class AdminController {
 //    }
 
     @PostMapping("/update")
-    public String editUser(User user,@RequestParam("roles") List<Long> roles ) {
+    public String editUser(User user, @RequestParam("roles") ArrayList<Long> roles ) {
         userService.updateUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
     }

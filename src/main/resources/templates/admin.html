@@ -95,7 +95,7 @@
                             <label class="font-weight-bolder">Роль
                                 <select class="form-control form-control-sm" name="roles" multiple required>
                                     <div th:each="role : ${userRoles}">
-                                        <option th:value="${role.id}" th:text="${role}"/>
+                                        <option th:value="${role.id}" th:text="${role.id+' '+role.name}"/>
                                     </div>
                                 </select></label>
                         </div>
@@ -197,7 +197,7 @@
                                                                 multiple
                                                                 required>
                                                             <div th:each="role : ${userRoles}">
-                                                                <option th:value="${role.id}" th:text="${role}"
+                                                                <option th:value="${role.id}" th:text="${role.id+' '+role.name}"
                                                                         th:selected="${user.roles.contains(role)}"></option>
                                                             </div>
                                                         </select></label>
@@ -242,13 +242,13 @@
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
                                                     <label class="font-weight-bolder">Age
-                                                        <input required type="text" class="form-control form-control-sm"
+                                                        <input disabled type="text" class="form-control form-control-sm"
                                                                name="age"
                                                                placeholder="Age" th:value="*{age}"></label>
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
                                                     <label class="font-weight-bolder">Email
-                                                        <input required type="text" class="form-control form-control-sm"
+                                                        <input disabled type="text" class="form-control form-control-sm"
                                                                name="email"
                                                                placeholder="Email" th:value="*{email}"></label>
                                                 </div>
@@ -258,7 +258,7 @@
                                                         <select class="form-control form-control-sm" name="roles"
                                                                 multiple>
                                                             <div th:each="role : ${userRoles}">
-                                                                <option th:value="${role.id}" th:text="${role}"
+                                                                <option th:value="${role.id}" th:text="${role.id+' '+role.name}"
                                                                         disabled></option>
                                                             </div>
                                                         </select></label>
