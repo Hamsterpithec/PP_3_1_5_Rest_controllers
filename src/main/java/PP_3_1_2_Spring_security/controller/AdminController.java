@@ -41,7 +41,7 @@ public class AdminController {
 
 
     @PostMapping("/create")
-    public String createUser(User user, @ModelAttribute ArrayList<Long> roles) {
+    public String createUser(User user, @RequestParam("roles") ArrayList<Long> roles) {
         System.out.println(roles);
         userService.addUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
@@ -54,8 +54,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    @DeleteMapping("/delete")
+    public String deleteUser(@RequestParam("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }

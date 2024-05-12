@@ -159,7 +159,7 @@
                                                 <button class="close" data-dismiss="modal">x</button>
                                             </div>
                                             <form action="#" th:object="${user}"
-                                                  th:action="@{/admin/update/{id}(id=${user.id})}" method="post">
+                                                  th:action="@{/admin/update/(id=${user.id})}" method="post">
 
                                                 <input type="hidden" name="id" th:value="*{id}">
                                                 <div class="form-group mx-auto w-50">
@@ -223,7 +223,7 @@
                                                 <button class="close" data-dismiss="modal">x</button>
                                             </div>
                                             <form action="#" th:object="${user}"
-                                                  th:action="@{/admin/delete/{id}(id=${user.id})}" method="post">
+                                                  th:action="@{/admin/delete/(id=${user.id})}" th:method="delete">
                                                 <input type="hidden" name="id" th:value="*{id}">
 
                                                 <div class="form-group mx-auto w-50">
