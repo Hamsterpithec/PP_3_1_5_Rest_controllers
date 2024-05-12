@@ -9,9 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin</title>
 </head>
-
 <body>
-
 <div class=".container-fluid">
     <!--    Самый верх-->
     <div class="mb-2 bg-dark text-white">
@@ -32,7 +30,6 @@
         </div>
     </div>
 </div>
-
 <!-- ====== КНОПКИ СЛЕВА ====== -->
 <div class="row bg-light flex-fill d-flex justify-content-start">
     <div class="col col-2 bg-white portlet-container portlet-dropzone">
@@ -108,9 +105,7 @@
             </div>
             <!-- ====== Все пользователи ====== -->
             <div class="tab-pane fade show active" id="usersTable">
-
                 <p><strong>Все пользователи:</strong></p>
-
                 <div class="card-body">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -133,7 +128,6 @@
                             <td class="text-center" th:text="${user.age}"></td>
                             <td class="text-center" th:text="${user.email}"></td>
                             <td class="text-center" th:text="${user.getStringRoles()}"></td>
-
                             <!-- ====== Кнопки ====== -->
                             <td class="text-center">
                                 <button type="button" class="btn btn-primary btn-sm"
@@ -211,7 +205,6 @@
                                     </div>
                                 </div>
                             </td>
-
                             <!-- ====== Удаление ====== -->
                             <td class="modal fade" id="modalDelete" tabindex="-1" role="dialog"
                                 th:attrappend="id=${user.id}">
@@ -273,19 +266,13 @@
                                     </div>
                                 </div>
                             </td>
-
-
                         </tr>
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
         </div>
     </div>
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>

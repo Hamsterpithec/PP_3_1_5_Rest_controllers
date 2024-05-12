@@ -40,25 +40,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public void addUser(User user,Set<Role> roles) {
+    public void addUser(User user, Set<Role> roles) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.addUser(user,roles);
+        userDao.addUser(user, roles);
 
     }
 
     @Override
     @Transactional
-    public void deleteUser(long id){
+    public void deleteUser(long id) {
         userDao.deleteUser(id);
     }
 
     @Override
     @Transactional
-    public void updateUser(User user,Set<Role> roles) {
+    public void updateUser(User user, Set<Role> roles) {
         if (!user.getPassword().equals(findById(user.getId()).getPassword())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        userDao.updateUser(user,roles);
+        userDao.updateUser(user, roles);
     }
 
     @Override

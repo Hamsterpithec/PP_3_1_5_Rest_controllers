@@ -18,7 +18,6 @@ public class Role implements GrantedAuthority {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-
     private Set<User> users;
 
     public Role() {

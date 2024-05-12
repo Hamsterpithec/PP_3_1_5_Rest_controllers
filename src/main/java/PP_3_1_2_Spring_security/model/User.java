@@ -19,7 +19,7 @@ public class User implements UserDetails {
     @Column(name = "name")
     private String name;
 
-    @Column(name="lastName")
+    @Column(name = "lastName")
     private String lastName;
 
     @Column(name = "age")
@@ -28,7 +28,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
 
@@ -42,7 +42,7 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
 
-    public User(String name,String lastName, String password, int age,String email) {
+    public User(String name, String lastName, String password, int age, String email) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
@@ -141,9 +141,10 @@ public class User implements UserDetails {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getStringRoles() {
         StringBuilder roleString = new StringBuilder();
-        for (Role r: roles) {
+        for (Role r : roles) {
             String temp;
             if (r.getName().equals("ROLE_ADMIN")) {
                 temp = "ADMIN";
