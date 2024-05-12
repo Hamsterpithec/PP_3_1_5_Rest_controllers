@@ -62,42 +62,43 @@
                     <form class="form mx-auto w-25" action="#" th:action="@{/admin/create}" th:object="${newUser}"
                           method="post">
                         <div class="form-group">
-                            <label class="font-weight-bolder">Name
-                                <input required type="text" class="form-control form-control-sm"
-                                       name="name"
-                                       placeholder="Name" th:value="*{name}"></label>
+                            <label class="font-weight-bolder">Name</label>
+                            <input required type="text" class="form-control form-control-sm"
+                                   name="name"
+                                   placeholder="Name" th:value="*{name}">
                         </div>
                         <div class="form-group">
-                            <label class="font-weight-bolder">Last Name
-                                <input required type="text" class="form-control form-control-sm"
-                                       name="lastName"
-                                       placeholder="Last Name" th:value="*{lastName}"></label>
+                            <label class="font-weight-bolder">Last Name</label>
+                            <input required type="text" class="form-control form-control-sm"
+                                   name="lastName"
+                                   placeholder="Last Name" th:value="*{lastName}">
                         </div>
                         <div class="form-group">
-                            <label class="font-weight-bolder">Age
-                                <input required type="text" class="form-control form-control-sm"
-                                       name="age"
-                                       placeholder="Age" th:value="*{age}"></label>
+                            <label class="font-weight-bolder">Age</label>
+                            <input required type="text" class="form-control form-control-sm"
+                                   name="age"
+                                   placeholder="Age" th:value="*{age}">
                         </div>
                         <div class="form-group">
-                            <label class="font-weight-bolder">Email
-                                <input required type="text" class="form-control form-control-sm"
-                                       name="email"
-                                       placeholder="Email" th:value="*{email}"></label>
+                            <label class="font-weight-bolder">Email</label>
+                            <input required type="text" class="form-control form-control-sm"
+                                   name="email"
+                                   placeholder="Email" th:value="*{email}">
                         </div>
                         <div class="form-group">
-                            <label class="font-weight-bolder">Password
-                                <input required type="password" class="form-control form-control-sm"
-                                       name="password"
-                                       placeholder="Password" th:value="*{password}"></label>
+                            <label class="font-weight-bolder">Password</label>
+                            <input required type="password" class="form-control form-control-sm"
+                                   name="password"
+                                   placeholder="Password" th:value="*{password}">
                         </div>
                         <div class="form-group">
-                            <label class="font-weight-bolder">Роль
-                                <select class="form-control form-control-sm" name="roles" multiple required>
-                                    <div th:each="role : ${userRoles}">
-                                        <option th:value="${role.id}" th:text="${role.id+' '+role.name}"/>
-                                    </div>
-                                </select></label>
+                            <label class="font-weight-bolder">Роль</label>
+                            <select class="form-control form-control-sm" name="roles" th:value="*{roles}"
+                                    size="2" required>
+                                <option th:each="role : ${userRoles}"
+                                        th:value="${role.id}"
+                                        th:text="${role.id+' '+role.name}"/>
+                            </select>
                         </div>
                         <input class="btn btn-success text-white w-50"
                                type="submit"
@@ -162,45 +163,43 @@
 
                                                 <input type="hidden" name="id" th:value="*{id}">
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">First name
-                                                        <input required type="text" class="form-control form-control-sm"
-                                                               name="name"
-                                                               placeholder="Name" th:value="*{name}"></label>
+                                                    <label class="font-weight-bolder">Name</label>
+                                                    <input required type="text" class="form-control form-control-sm"
+                                                           name="name"
+                                                           placeholder="Name" th:value="*{name}">
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">Last name
-                                                        <input required type="text" class="form-control form-control-sm"
-                                                               name="lastName"
-                                                               placeholder="Last Name" th:value="*{lastName}"></label>
+                                                    <label class="font-weight-bolder">Last name</label>
+                                                    <input required type="text" class="form-control form-control-sm"
+                                                           name="lastName"
+                                                           placeholder="Last Name" th:value="*{lastName}">
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">Age
-                                                        <input required type="text" class="form-control form-control-sm"
-                                                               name="age"
-                                                               placeholder="Age" th:value="*{age}"></label>
+                                                    <label class="font-weight-bolder">Age</label>
+                                                    <input required type="text" class="form-control form-control-sm"
+                                                           name="age"
+                                                           placeholder="Age" th:value="*{age}">
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">Email
-                                                        <input required type="text" class="form-control form-control-sm"
-                                                               name="email"
-                                                               placeholder="Email" th:value="*{email}"></label>
+                                                    <label class="font-weight-bolder">Email</label>
+                                                    <input required type="text" class="form-control form-control-sm"
+                                                           name="email"
+                                                           placeholder="Email" th:value="*{email}">
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">
-                                                        <input type="password" class="form-control form-control-sm"
-                                                               name="password"
-                                                               placeholder="Password">Password</label>
+                                                    <label class="font-weight-bolder">Password</label>
+                                                    <input type="password" class="form-control form-control-sm"
+                                                           name="password"
+                                                           placeholder="Password">
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">Role
-                                                        <select class="form-control form-control-sm" name="roles"
-                                                                multiple
-                                                                required>
-                                                            <div th:each="role : ${userRoles}">
-                                                                <option th:value="${role.id}" th:text="${role.id+' '+role.name}"
-                                                                        th:selected="${user.roles.contains(role)}"></option>
-                                                            </div>
-                                                        </select></label>
+                                                    <label class="font-weight-bolder">Role</label>
+                                                    <select class="form-control form-control-sm" name="roles"
+                                                            multiple required>
+                                                        <option th:each="role : ${userRoles}"
+                                                                th:value="${role.id}"
+                                                                th:text="${role.id+' '+role.name}"></option>
+                                                    </select>
                                                 </div>
                                                 <div class="card-footer text-right bg-white">
                                                     <button class="btn btn-secondary" data-dismiss="modal">Close
@@ -228,40 +227,40 @@
                                                 <input type="hidden" name="id" th:value="*{id}">
 
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">Name
-                                                        <input disabled type="text" class="form-control form-control-sm"
-                                                               name="name"
-                                                               placeholder="Name" th:value="*{name}"></label>
+                                                    <label class="font-weight-bolder">Name</label>
+                                                    <input disabled type="text" class="form-control form-control-sm"
+                                                           name="name"
+                                                           placeholder="Name" th:value="*{name}">
                                                 </div>
 
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">Last name
-                                                        <input disabled type="text" class="form-control form-control-sm"
-                                                               name="lastName"
-                                                               placeholder="Last Name" th:value="*{lastName}"></label>
+                                                    <label class="font-weight-bolder">Last name</label>
+                                                    <input disabled type="text" class="form-control form-control-sm"
+                                                           name="lastName"
+                                                           placeholder="Last Name" th:value="*{lastName}">
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">Age
-                                                        <input disabled type="text" class="form-control form-control-sm"
-                                                               name="age"
-                                                               placeholder="Age" th:value="*{age}"></label>
+                                                    <label class="font-weight-bolder">Age</label>
+                                                    <input disabled type="text" class="form-control form-control-sm"
+                                                           name="age"
+                                                           placeholder="Age" th:value="*{age}">
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">Email
-                                                        <input disabled type="text" class="form-control form-control-sm"
-                                                               name="email"
-                                                               placeholder="Email" th:value="*{email}"></label>
+                                                    <label class="font-weight-bolder">Email</label>
+                                                    <input disabled type="text" class="form-control form-control-sm"
+                                                           name="email"
+                                                           placeholder="Email" th:value="*{email}">
                                                 </div>
 
                                                 <div class="form-group mx-auto w-50">
-                                                    <label class="font-weight-bolder">Role
-                                                        <select class="form-control form-control-sm" name="roles"
-                                                                multiple>
-                                                            <div th:each="role : ${userRoles}">
-                                                                <option th:value="${role.id}" th:text="${role.id+' '+role.name}"
-                                                                        disabled></option>
-                                                            </div>
-                                                        </select></label>
+                                                    <label class="font-weight-bolder">Role</label>
+                                                    <select class="form-control form-control-sm" name="roles"
+                                                            multiple>
+                                                        <option th:each="role : ${userRoles}"
+                                                                th:value="${role.id}"
+                                                                th:text="${role.id+' '+role.name}"
+                                                                disabled></option>
+                                                    </select>
                                                 </div>
 
                                                 <div class="card-footer text-right bg-white">

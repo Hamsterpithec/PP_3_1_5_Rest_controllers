@@ -1,6 +1,7 @@
 package PP_3_1_2_Spring_security.controller;
 
 
+import PP_3_1_2_Spring_security.model.Role;
 import PP_3_1_2_Spring_security.model.User;
 import PP_3_1_2_Spring_security.service.RoleService;
 import PP_3_1_2_Spring_security.service.UserService;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 @Controller
@@ -36,25 +39,14 @@ public class AdminController {
         return "admin";
     }
 
-//    @GetMapping("/create")
-//    public String createUserForm(Model model) {
-//        model.addAttribute("user", new User());
-//        model.addAttribute("userRoles", roleService.getAllRoles());
-//        return "create";
-//    }
 
     @PostMapping("/create")
-    public String createUser(User user, ArrayList<Long> roles) {
+    public String createUser(User user, @ModelAttribute ArrayList<Long> roles) {
+        System.out.println(roles);
         userService.addUser(user,roleService.findRoles(roles));
         return "redirect:/admin";
     }
 
-//    @GetMapping("/edit")
-//    public String editUserForm(@RequestParam("id") Long id, Model model) {
-//        model.addAttribute("user", userService.findById(id));
-//        model.addAttribute("userRoles", roleService.getAllRoles());
-//        return "edit";
-//    }
 
     @PostMapping("/update")
     public String editUser(User user, @RequestParam("roles") ArrayList<Long> roles ) {
@@ -62,8 +54,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/delete")
-    public String deleteUser(@RequestParam("id") Long id) {
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
