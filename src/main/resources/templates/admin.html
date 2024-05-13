@@ -90,8 +90,8 @@
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bolder">Роль</label>
-                            <select class="form-control form-control-sm" name="roles" th:value="*{roles}"
-                                    size="2" required>
+                            <select class="form-control form-control-sm" name="roles"
+                                    size="2" multiple required>
                                 <option th:each="role : ${userRoles}"
                                         th:value="${role.id}"
                                         th:text="${role.id+' '+role.name}"/>
@@ -184,7 +184,7 @@
                                                     <label class="font-weight-bolder">Password</label>
                                                     <input type="password" class="form-control form-control-sm"
                                                            name="password"
-                                                           placeholder="Password">
+                                                           placeholder="Password" th:value="*{password}">
                                                 </div>
                                                 <div class="form-group mx-auto w-50">
                                                     <label class="font-weight-bolder">Role</label>

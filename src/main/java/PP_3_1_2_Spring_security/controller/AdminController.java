@@ -39,7 +39,6 @@ public class AdminController {
 
     @PostMapping("/create")
     public String createUser(User user, @RequestParam("roles") ArrayList<Long> roles) {
-        System.out.println(roles);
         userService.addUser(user, roleService.findRoles(roles));
         return "redirect:/admin";
     }

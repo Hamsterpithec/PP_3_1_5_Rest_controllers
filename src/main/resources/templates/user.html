@@ -36,6 +36,7 @@
     <div class="col col-md-2 bg-white portlet-container portlet-dropzone">
         <div class="d-inline-block"></div>
         <div class="list-group">
+            <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin" class="list-group-item active">Admin</a>
             <a sec:authorize="hasRole('ROLE_USER')" href="/user" class="list-group-item active">User</a>
         </div>
     </div>
