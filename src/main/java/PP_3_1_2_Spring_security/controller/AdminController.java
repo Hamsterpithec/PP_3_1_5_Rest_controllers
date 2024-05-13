@@ -1,6 +1,7 @@
 package PP_3_1_2_Spring_security.controller;
 
 
+import PP_3_1_2_Spring_security.model.Role;
 import PP_3_1_2_Spring_security.model.User;
 import PP_3_1_2_Spring_security.service.RoleService;
 import PP_3_1_2_Spring_security.service.UserService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Set;
 
 
 @Controller
@@ -38,15 +40,20 @@ public class AdminController {
 
 
     @PostMapping("/create")
-    public String createUser(User user, @RequestParam("roles") ArrayList<Long> roles) {
-        userService.addUser(user, roleService.findRoles(roles));
+    public String createUser(User user, @RequestParam("roles") Set<Long> roleIds) {
+        Set<Role> roles = roleService.findRoles(roleIds);
+        user.setRoles(roles);
+        userService.addUser(user);
         return "redirect:/admin";
     }
 
 
+
     @PostMapping("/update")
-    public String editUser(User user, @RequestParam("roles") ArrayList<Long> roles) {
-        userService.updateUser(user, roleService.findRoles(roles));
+    public String editUser(User user, @RequestParam("roles") Set<Long> roleIds) {
+        Set<Role> roles = roleService.findRoles(roleIds);
+        user.setRoles(roles);
+        userService.updateUser(user);
         return "redirect:/admin";
     }
 

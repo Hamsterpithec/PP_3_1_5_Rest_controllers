@@ -2,7 +2,6 @@ package PP_3_1_2_Spring_security.service;
 
 
 import PP_3_1_2_Spring_security.dao.UserDao;
-import PP_3_1_2_Spring_security.model.Role;
 import PP_3_1_2_Spring_security.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Set;
 
 
 @Service
@@ -40,9 +38,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public void addUser(User user, Set<Role> roles) {
+    public void addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.addUser(user, roles);
+        userDao.addUser(user);
 
     }
 
@@ -54,11 +52,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public void updateUser(User user, Set<Role> roles) {
+    public void updateUser(User user) {
         if (!user.getPassword().equals(findById(user.getId()).getPassword())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        userDao.updateUser(user, roles);
+        userDao.updateUser(user);
     }
 
     @Override

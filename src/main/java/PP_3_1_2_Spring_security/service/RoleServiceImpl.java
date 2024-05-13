@@ -25,8 +25,8 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(readOnly = true)
-    public Set<Role> findRoles(List<Long> roles) {
-        return roleDao.findRoles(roles);
+    public Set<Role> findRoles(Set<Long> roleIds) {
+        return roleDao.findRoles(roleIds);
     }
 
     @Override

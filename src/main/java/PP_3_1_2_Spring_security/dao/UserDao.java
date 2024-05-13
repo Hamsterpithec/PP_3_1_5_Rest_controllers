@@ -12,11 +12,11 @@ public interface UserDao {
 
     User findById(Long id);
 
-    void addUser(User user, Set<Role> roles);
+    void addUser(User user);
 
     void deleteUser(long id);
 
-    void updateUser(User user, Set<Role> roles);
+    void updateUser(User user);
 
     User findByUsername(String username);
 }

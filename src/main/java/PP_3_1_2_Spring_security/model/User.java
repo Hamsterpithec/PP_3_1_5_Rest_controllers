@@ -37,12 +37,13 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
 
-    public User(String name, String lastName, String password, int age, String email) {
+    public User(String name, String lastName, String password, int age, String email, Set<Role> roles) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
         this.password = password;
         this.email = email;
+        this.roles = roles;
 
     }
 

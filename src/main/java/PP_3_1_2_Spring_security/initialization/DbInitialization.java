@@ -29,12 +29,11 @@ public class DbInitialization {
         roleService.addRole(roleUser);
         roleService.addRole(roleAdmin);
 
-        User userAdmin = new User("admin", "admin", "admin", 32, "admin@mail.ru");
-        User userUser = new User("user", "user", "user", 25, "user@mail.ru");
+        User userAdmin = new User("admin", "admin", "admin", 32, "admin@mail.ru",Set.of(roleAdmin, roleUser));
+        User userUser = new User("user", "user", "user", 25, "user@mail.ru",Set.of(roleUser));
 
-        userService.addUser(userUser, Set.of(roleUser));
-        userService.addUser(userAdmin, Set.of(roleAdmin, roleUser));
-
+        userService.addUser(userUser);
+        userService.addUser(userAdmin);
 
     }
 

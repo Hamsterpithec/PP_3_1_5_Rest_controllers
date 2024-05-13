@@ -29,8 +29,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void addUser(User user, Set<Role> roles) {
-        user.setRoles(roles);
+    public void addUser(User user) {
         entityManager.persist(user);
     }
 
@@ -40,8 +39,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user, Set<Role> roles) {
-        user.setRoles(roles);
+    public void updateUser(User user) {
         entityManager.merge(user);
     }
 
