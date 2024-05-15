@@ -5,12 +5,13 @@ import PP_3_1_2_Spring_security.model.Role;
 import PP_3_1_2_Spring_security.model.User;
 import PP_3_1_2_Spring_security.service.RoleService;
 import PP_3_1_2_Spring_security.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Set;
 
 
@@ -28,6 +29,7 @@ public class AdminController {
     }
 
 
+
     @GetMapping
     public String allUsers(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
@@ -40,27 +42,27 @@ public class AdminController {
 
 
     @PostMapping("/create")
-    public String createUser(User user, @RequestParam("roles") Set<Long> roleIds) {
+    public ResponseEntity<User> createUser(@RequestBody User user, Set<Long> roleIds) {
         Set<Role> roles = roleService.findRoles(roleIds);
         user.setRoles(roles);
         userService.addUser(user);
-        return "redirect:/admin";
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
-
 
 
     @PostMapping("/update")
-    public String editUser(User user, @RequestParam("roles") Set<Long> roleIds) {
+    public ResponseEntity<User> editUser(@RequestBody User user, Set<Long> roleIds) {
         Set<Role> roles = roleService.findRoles(roleIds);
         user.setRoles(roles);
         userService.updateUser(user);
-        return "redirect:/admin";
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+
     }
 
     @DeleteMapping("/delete")
-    public String deleteUser(@RequestParam("id") Long id) {
+    public ResponseEntity<Void> deleteUser(@RequestBody Long id) {
         userService.deleteUser(id);
-        return "redirect:/admin";
+        return ResponseEntity.noContent().build();
     }
 }
 
