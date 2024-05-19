@@ -20,7 +20,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 public class AdminController {
 
     private final UserService userService;
@@ -53,7 +53,7 @@ public class AdminController {
         return new ResponseEntity<>(userService.findByUsername(principal.getName()),HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user, Set<Long> roleIds) {
         Set<Role> roles = roleService.findRoles(roleIds);
         user.setRoles(roles);
@@ -62,7 +62,7 @@ public class AdminController {
     }
 
 
-    @PostMapping("/update")
+    @PostMapping
     public ResponseEntity<User> editUser(@RequestBody User user, Set<Long> roleIds) {
         Set<Role> roles = roleService.findRoles(roleIds);
         user.setRoles(roles);

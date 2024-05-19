@@ -2,15 +2,16 @@ package PP_3_1_2_Spring_security.controller;
 
 import PP_3_1_2_Spring_security.model.User;
 import PP_3_1_2_Spring_security.service.UserService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
-@Controller
-@RequestMapping("/user")
+@RestController
+@RequestMapping("/api/user")
 public class UserController {
     private final UserService userService;
 
@@ -19,9 +20,8 @@ public class UserController {
     }
 
     @GetMapping
-    public String user(Model model, Principal principal) {
-        User user = userService.findByUsername(principal.getName());
-        model.addAttribute("user", user);
-        return "user";
+    public ResponseEntity<User> getUserById(Principal principal) {
+        return new ResponseEntity<>(userService.findByUsername(principal.getName()), HttpStatus.OK);
     }
+
 }
