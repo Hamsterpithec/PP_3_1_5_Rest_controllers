@@ -9,14 +9,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 
 @RestController
@@ -35,46 +38,46 @@ public class AdminController {
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return users != null && !users.isEmpty()
-                ? new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 
 
-    @GetMapping
-    public ResponseEntity<List<Role>> getAllRoles() {
-        List<Role> roles = roleService.getAllRoles();
-        return new ResponseEntity<>(roles, HttpStatus.OK);
-    }
-
-    @GetMapping
-    public ResponseEntity<User> getUserById(Principal principal) {
-        return new ResponseEntity<>(userService.findByUsername(principal.getName()),HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+        User user= userService.findById(id);
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user, Set<Long> roleIds) {
-        Set<Role> roles = roleService.findRoles(roleIds);
-        user.setRoles(roles);
-        userService.addUser(user);
-        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+    public ResponseEntity<HttpStatus> createUser(@RequestBody @Valid User newUser) {
+        userService.addUser(newUser);
+        return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
 
-    @PostMapping
-    public ResponseEntity<User> editUser(@RequestBody User user, Set<Long> roleIds) {
-        Set<Role> roles = roleService.findRoles(roleIds);
-        user.setRoles(roles);
-        userService.updateUser(user);
-        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
+    @PutMapping
+    public ResponseEntity<HttpStatus> editUser(@RequestBody @Valid User userFromWebPage) {
+        userService.updateUser(userFromWebPage);
+        return ResponseEntity.ok(HttpStatus.OK);
 
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping()
     public ResponseEntity<Void> deleteUser(@RequestBody Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/current")
+    public ResponseEntity<User> getCurrentUser(Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/roles")
+    public ResponseEntity<Collection<Role>> getAllRoles() {
+        List<Role> roles = roleService.getAllRoles();
+        return new ResponseEntity<>(roles, HttpStatus.OK);
     }
 }
 
