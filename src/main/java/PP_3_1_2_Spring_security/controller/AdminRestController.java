@@ -24,13 +24,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
-public class AdminController {
+public class AdminRestController {
 
     private final UserService userService;
     private final RoleService roleService;
 
 
-    public AdminController(UserService userService, RoleService roleService) {
+    public AdminRestController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
