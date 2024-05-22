@@ -147,7 +147,7 @@ function showDeleteModal(id) {
             console.log(deleteUser);
             document.getElementById('idDel').setAttribute('value', deleteUser.id);
             document.getElementById('nameDel').setAttribute('value', deleteUser.name);
-            document.getElementById('lastName').setAttribute('value', deleteUser.lastName);
+            document.getElementById('lastNameDel').setAttribute('value', deleteUser.lastName);
             document.getElementById('passwordDel').setAttribute('value', deleteUser.password);
             document.getElementById('ageDel').setAttribute('value', deleteUser.age);
             document.getElementById('emailDel').setAttribute('value', deleteUser.email);
